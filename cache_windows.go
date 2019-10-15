@@ -2,7 +2,7 @@ package cache
 
 import (
 	"github.com/dgraph-io/badger"
-	"github.com/go-cacher/cacher"
+	"github.com/gocacher/cacher"
 )
 
 func NewBadgerCache(path string) cacher.Cacher {

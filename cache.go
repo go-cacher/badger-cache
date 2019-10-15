@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/dgraph-io/badger"
-	"github.com/go-cacher/cacher"
+	"github.com/gocacher/cacher"
 )
 
 var DefaultPath = "cache"
