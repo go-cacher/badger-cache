@@ -9,9 +9,15 @@ import (
 	"github.com/go-cacher/cacher"
 )
 
+var DefaultPath = "cache"
+
 type BadgerCache struct {
 	path string
 	db   *badger.DB
+}
+
+func init() {
+	cacher.Register(NewBadgerCache(DefaultPath))
 }
 
 func (b BadgerCache) Get(key string) ([]byte, error) {
