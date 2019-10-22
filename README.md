@@ -4,8 +4,8 @@
 
 ```
 import (
-_ "github.com/gocacher/badger-cache"
-"github.com/gocacher/cacher"
+    _ "github.com/gocacher/badger-cache/easy"
+    "github.com/gocacher/cacher"
 )
 
 //then enjoy it youself
