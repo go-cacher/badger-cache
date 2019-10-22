@@ -16,10 +16,6 @@ type BadgerCache struct {
 	db   *badger.DB
 }
 
-func init() {
-	cacher.Register(NewBadgerCache(DefaultPath))
-}
-
 func (b BadgerCache) Get(key string) ([]byte, error) {
 	var bytes []byte
 	if err := b.db.View(func(txn *badger.Txn) error {
@@ -114,7 +110,7 @@ func (b BadgerCache) GetMultiple(keys ...string) (map[string][]byte, error) {
 	return vals, err
 }
 
-func (b BadgerCache) SetMultiple(values map[string][]byte) error {
+func (b *BadgerCache) SetMultiple(values map[string][]byte) error {
 	return b.db.Update(func(txn *badger.Txn) error {
 		for k, v := range values {
 			err := txn.Set([]byte(k), v)
@@ -127,7 +123,7 @@ func (b BadgerCache) SetMultiple(values map[string][]byte) error {
 	})
 }
 
-func (b BadgerCache) DeleteMultiple(keys ...string) error {
+func (b *BadgerCache) DeleteMultiple(keys ...string) error {
 	return b.db.Update(func(txn *badger.Txn) error {
 		for _, key := range keys {
 			err := txn.Delete([]byte(key))
@@ -137,4 +133,8 @@ func (b BadgerCache) DeleteMultiple(keys ...string) error {
 		}
 		return nil
 	})
+}
+
+func NewBadgerCache(path string) cacher.Cacher {
+	return newBadgerCache(path)
 }

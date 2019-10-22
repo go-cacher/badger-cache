@@ -5,7 +5,7 @@ import (
 	"github.com/gocacher/cacher"
 )
 
-func NewBadgerCache(path string) cacher.Cacher {
+func newBadgerCache(path string) cacher.Cacher {
 	options := badger.DefaultOptions(path)
 	options.Truncate = true
 	db, err := badger.Open(options)
