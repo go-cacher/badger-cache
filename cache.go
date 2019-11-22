@@ -9,7 +9,7 @@ import (
 	"github.com/gocacher/cacher"
 )
 
-var DefaultPath = "cache"
+var DefaultCachePath = "cache"
 
 type BadgerCache struct {
 	path string
@@ -135,6 +135,6 @@ func (b *BadgerCache) DeleteMultiple(keys ...string) error {
 	})
 }
 
-func NewBadgerCache(path string) cacher.Cacher {
-	return newBadgerCache(path)
+func New() cacher.Cacher {
+	return newBadgerCache(DefaultCachePath)
 }

@@ -6,5 +6,5 @@ import (
 )
 
 func init() {
-	cacher.Register(cache.NewBadgerCache(cache.DefaultPath))
+	cacher.Register(cache.New())
 }
